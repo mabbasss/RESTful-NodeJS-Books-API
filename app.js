@@ -32,7 +32,11 @@ app.use(bodyParser.json());
 app.use('/api', bookRouter);
 
 app.get('/', (req, res) => {
-  res.send('Welcome to my NODEMON API!');
+  res.send(`<a href="https://${req.headers.host}/api/books/">Welcome to my NodeJS APIs!</a>`);
+});
+
+app.get('*', (req, res) => {
+  res.status(404).send(`What??? <br><br> <a href="https://${req.headers.host}/api/books/">Return to books</a>`);
 });
 
 app.server = app.listen(port, () => {
